@@ -1,0 +1,11 @@
+Needed:
+    Character Image data['image']
+    Character Name data['name']
+    Status (Dead/alive/unknown + indicator circle or green/red/grey) data['status']
+    Species data['species']
+    Last Known Location data['location'] (location {name, url: .../location/{locationid}})
+    First Seen in?... add in later data['episode'] lowest => episode.json['name']
+
+
+
+the random .json files were used for reference.

@@ -36,6 +36,21 @@
         margin-right:10px;
     }
 
+    .alive{
+        background:lightgreen;
+        width:10px;
+        height:10px;
+        border-radius:100%;
+        margin-right:10px;
+    }    
+    .unknown{
+        background:lightgrey;
+        width:10px;
+        height:10px;
+        border-radius:100%;
+        margin-right:10px;
+    }
+
     .name{
         font-family:sans-serif;
         color:white;
@@ -79,14 +94,31 @@
 
 
 </style>
-
+<script>
+    import { getCharInfo } from "./rickapi";
+    let character = [];
+    (async () => {character = await getCharInfo()} )
+    console.log("Characters: ", character)
+</script>
+<!-- Svelte each loops? -->
 <div class="grid">
+    {#each {length: 6 } as i } <!-- https://stackoverflow.com/questions/58213585/svelte-3-how-to-loop-each-block-x-amount-of-times -->
+    <div class="card">
+        <div class="image"></div>
+        <div class="info">
+            <h1 class="name">{character[i]['name']}</h1>
+            <h3 class="status"><div class="dead"></div> {character['status']} - {character['species']}</h3>
 
+            <h3 class="locationLabel">Last known location</h3>
+            <h3 class="location"><a href="location?id=${character['locaton']}">Citadel of Ricks</a></h3>
+        </div>
+    </div>    
+    {/each}
     <div class="card">
         <div class="image"></div>
         <div class="info">
             <h1 class="name">Evil Rick</h1>
-            <h3 class="status"><div class="dead"></div> Dead - Humanoid</h3>
+            <h3 class="status"><div class="alive"></div> Dead - Humanoid</h3>
 
             <h3 class="locationLabel">Last known location</h3>
             <h3 class="location"><a href="#">Citadel of Ricks</a></h3>
@@ -97,18 +129,7 @@
         <div class="image"></div>
         <div class="info">
             <h1 class="name">Evil Rick</h1>
-            <h3 class="status"><div class="dead"></div> Dead - Humanoid</h3>
-
-            <h3 class="locationLabel">Last known location</h3>
-            <h3 class="location"><a href="#">Citadel of Ricks</a></h3>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="image"></div>
-        <div class="info">
-            <h1 class="name">Evil Rick</h1>
-            <h3 class="status"><div class="dead"></div> Dead - Humanoid</h3>
+            <h3 class="status"><div class="unknown"></div> Dead - Humanoid</h3>
 
             <h3 class="locationLabel">Last known location</h3>
             <h3 class="location"><a href="#">Citadel of Ricks</a></h3>
